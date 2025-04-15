@@ -1,0 +1,47 @@
+OSPF sur chaque Router
+=======================
+en
+conf t
+router ospf 1
+network <ip ss-rsx> <milkaMask> area <num area>
+	OU
+network <ip interface> 0.0.0.0 area 0
+
+	OU
+
+int g0/0 			Marche aussi avec int range
+ip ospf 1 area 0
+
+
+
+CHANGE ID
+=========
+en
+conf t
+router ospf <num>
+router-id <ip>
+end
+clear ip ospf process
+
+
+
+
+
+VERIFICATION
+============
+sh ip ospf interface <interface>
+sh ip ospf neighbor
+
+
+
+
+
+
+
+MILKA MASK
+=================
+
+	 255.255.255.255
+	-    mask ss-rsx
+	_________________
+	= milka mask

@@ -1,0 +1,66 @@
+en (able)
+conf t
+host(name) <nom>
+username <user> secret <pass> -> obligatoire
+line vty 0 4
+login local
+transport input ssh -> active ssh
+exit
+
+int g0/0
+ip add <ip> <mask>
+no sh
+
+
+CONFIGURATION INTERFACE ENTRE ROUTEURS
+int s0/0/0
+ip add <ip> <mask>
+no sh
+clock rate 64000
+exit
+
+CONFIGURATION ROUTE 
+	STATIC
+		ip route <ss-rsx cible> <mask> <ip entry>
+	FLOTTANTE
+		ip route 0.0.0.0 0.0.0.0 <ip dest>
+
+
+
+SSH
+conf t
+ip domain-name <domain.com>
+crypto key generate rsa
+1024
+
+ENREGISTRER MODIF
+conf t
+do wr
+	OU
+copy run start
+
+
+
+
+CONFIGURATION SWITCH
+en
+conf t
+host <name>
+line vty 0 15 -> pk 15, faire show running-config et descendre
+login local
+exit
+username <nom> secret <pass>
+int vlan 1
+ip add <ip> <mask>
+no sh
+exit
+ip default-gateway <ip router .1>
+
+
+
+
+
+
+XX 0 00000
+2^7 + 2^6
+XX 1 00000

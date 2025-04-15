@@ -1,0 +1,15 @@
+enable
+conf t
+hostname <nouveauNom>
+username <nom> secret <mdp>
+ip domain name <nomDomaine>
+line console 0
+login local
+
+line vty 0 4
+login local
+transport input ssh (| telnet)
+exit
+int g0/0
+ip add <ip> <mask>
+no sh

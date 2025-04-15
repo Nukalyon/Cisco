@@ -1,0 +1,69 @@
+
+1. Créer le vlan 
+vlan <num>
+
+2. Renommer le vlan
+name <nom>
+
+3. Interface
+int f0/1
+int range f0/2-5
+
+4. Mode pour l'interface ACCESS ou TRUNK
+switchport mode access
+switchport access vlan <numPort>
+
+
+EXAMPLE
+=========================
+VLAN 10 -> STUDENT -> [21-24]
+VLAN 20 -> TEACHER -> [1-5]
+
+
+en
+conf t
+vlan 10
+name Student
+vlan 20
+name Teacher
+do sh vl(an) br
+
+int rang f0/1-5
+switchport mode access
+switchport access vlan 20
+exit
+do sh vlan br (-> vérif des attributions)
+
+int range f0/21-24
+switchport mode accesss
+switchport access vlan 10
+exit
+do sh vl br (-> vérif des attributions)
+
+
+
+TRUNK (sw à sw)
+===============
+int g0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20
+/!\ des deux côtés !
+
+
+ROUTAGE INTER-VLAN (sw à rt)
+============================
+####faire trunk routage####
+
+int g0/0.<numVlan>
+encapsulation dot1Q <numVlan>
+ip add <dgtw> <mask>
+exit
+/!\ pour chacun des vlans
+int g0/0
+no sh
+
+do sh int (g0/0) -> vérification des ip
+
+
+
+

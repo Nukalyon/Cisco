@@ -1,0 +1,51 @@
+DHCP:
+	- Trouver default gateway
+	- Adresse serveur/dhcp
+	- Plage adressable
+
+
+Sur serveur
+===========
+- Donner adresse statique ipv4 (généralement .254)
+- mask auto
+- default gateway .1
+- DNS server = ip statique
+
+
+
+Sur serveur et Services > DHCP
+==============================
+- name : Pool<num>
+- default .1
+- click button <<Add>>
+
+Dans PC
+=======
+- au lieu d'IP static, DHCP
+
+
+Sur Routeur prenant role dhcp
+===========
+en
+conf t
+service dhcp
+ip dhcp pool <name>
+network 192.168.10.0 255.255.255.0	réseau
+default-router 192.168.10.1		dgtw
+dns-server 192.168.10.254		ipv4 serveur
+exit
+ip dhcp excluded-address 192.168.10.1 192.168.10.9
+
+
+Sur Routeur passerelle pour dhcp
+================================
+ip helper-address <adresse dhcp server .254>
+
+
+SYSLOG
+======
+en
+conf t
+logging <ip syslog server>
+ntp server <ip server ntp>
+service timestamps log datetime mse

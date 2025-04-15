@@ -1,0 +1,6 @@
+WRT300N -> Router
+
+Donner ip statique .2
+web browser
+192.168.0.1 -> http
+
